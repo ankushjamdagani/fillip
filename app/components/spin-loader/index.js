@@ -1,5 +1,3 @@
 import SpinLoader from './spin-loader';
 
-export {
-    SpinLoader
-}
+export default SpinLoader;
