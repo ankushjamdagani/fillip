@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import {
     Animated,
@@ -11,6 +12,7 @@ import {
 class SpinLoader extends React.Component {
     constructor(props) {
         super(props);
+        console.log('SpinLoader init');
 
         this.spin = this.spin.bind(this);
 
@@ -68,4 +70,10 @@ const styles = StyleSheet.create({
   }
 });
 
-export default SpinLoader;
+const mapStateToProps = (state, props) => {
+    return state
+}
+
+export default connect(
+    mapStateToProps
+)(SpinLoader);

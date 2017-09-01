@@ -1,27 +1,16 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
+import {  AppRegistry } from 'react-native';
+import { Provider } from 'react-redux';
 
-import React, { Component } from 'react';
-import {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
+import configureStore from './config/store.js';
 
-import {
-    SpinLoader
-} from './components';
+import { SpinLoader } from './components';
 
-export default class fillip extends Component {
-  render() {
-    return (
+let store = configureStore({});
+
+const Fillip = () => (
+    <Provider store={store}>
         <SpinLoader />
-    );
-  }
-}
+    </Provider>
+)
 
-AppRegistry.registerComponent('fillip', () => fillip);
+AppRegistry.registerComponent('Fillip', () => Fillip);
