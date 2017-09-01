@@ -1,16 +1,19 @@
-import {  AppRegistry } from 'react-native';
+import React from 'react';
+import { AppRegistry } from 'react-native';
 import { Provider } from 'react-redux';
 
 import configureStore from './config/store.js';
 
-import { SpinLoader } from './components';
+import {
+    SpinLoader
+} from './components';
 
 let store = configureStore({});
 
-const Fillip = () => (
+const fillip = () => (
     <Provider store={store}>
         <SpinLoader />
     </Provider>
 )
 
-AppRegistry.registerComponent('Fillip', () => Fillip);
+AppRegistry.registerComponent('fillip', () => fillip);

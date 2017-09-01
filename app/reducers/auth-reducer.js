@@ -1,4 +1,4 @@
-export default const authReducer = (state, action) => {
+const authReducer = (state, action) => {
     switch (action.type) {
         case 'LOGIN':
             if(action.payload.username === 'ankush' && action.payload.password === 'ankush')
@@ -14,3 +14,5 @@ export default const authReducer = (state, action) => {
             }
     }
 }
+
+export default authReducer;
