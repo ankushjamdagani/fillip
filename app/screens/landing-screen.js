@@ -8,7 +8,7 @@ import {
     GettingStarted
 } from '../components';
 
-export defualt class LandingScreen extends React.Component {
+export default class LandingScreen extends React.Component {
     constructor(props) {
         super(props);
     }
