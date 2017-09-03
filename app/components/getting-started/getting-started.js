@@ -64,9 +64,12 @@ export default class GettingStarted extends React.Component {
                         </Text>
                     </View>
                     <View style={[Styles.container]}>
-                        <Text>
-                            Rummy
-                        </Text>
+                        <View style={Styles.gettingStartedHead}></View>
+                        <View style={Styles.gettingStartedControls}>
+                            <Text>
+                                Get Started
+                            </Text>
+                        </View>
                     </View>
                 </ViewPagerAndroid>
                 <Animated.View style={[Styles.sliderControls, {bottom: sliderPosition}]}>

@@ -28,6 +28,21 @@ const Styles = StyleSheet.create({
         padding: 3,
         width: 40,
         margin: 10
+    },
+    gettingStartedHead: {
+        flex: 3
+    },
+    gettingStartedControls: {
+        flex: 1
+    },
+    gettingStartedControl: {
+        backgroundColor: '#333',
+        borderColor: '#111',
+        borderRaddius: 10,
+        borderWidth: 2,
+        color: 'white',
+        fontSize: 18,
+        padding: 10
     }
 })
 
