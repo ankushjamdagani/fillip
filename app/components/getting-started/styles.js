@@ -2,6 +2,8 @@ import {
     StyleSheet
 } from 'react-native';
 
+import { Colors } from '../../config/styles';
+
 const Styles = StyleSheet.create({
     containerWrapper: {
         flex: 1
@@ -9,10 +11,11 @@ const Styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        backgroundColor: 'white'
     },
     containerText: {
-        color: 'white',
+        color: Colors.PINK,
         fontSize: 68
     },
     sliderControls: {
@@ -24,25 +27,26 @@ const Styles = StyleSheet.create({
         width: '100%'
     },
     sliderControl: {
-        backgroundColor: 'rgba(255,255,255,.5)',
+        backgroundColor: Colors.BLUE,
         padding: 3,
         width: 40,
         margin: 10
     },
     gettingStartedHead: {
-        flex: 3
+        flex: 5
     },
     gettingStartedControls: {
         flex: 1
     },
     gettingStartedControl: {
-        backgroundColor: '#333',
-        borderColor: '#111',
-        borderRaddius: 10,
-        borderWidth: 2,
+        backgroundColor: Colors.PURPLE,
+        borderColor: 'black',
+        borderRadius: 2,
+        borderColor: 'rgba(0,0,0,.1)',
+        borderWidth: 1,
         color: 'white',
-        fontSize: 18,
-        padding: 10
+        paddingVertical: 10,
+        paddingHorizontal: 100
     }
 })
 

@@ -17,13 +17,18 @@ export default class GettingStarted extends React.Component {
         this.translateValue = new Animated.Value(0);
         this.changePage  = this.changePage.bind(this);
         this.hideSliderControls  = this.hideSliderControls.bind(this);
+
+        this.state = {
+            activeSlide: 0
+        }
     }
 
-    hideSliderControls(up) {
+    hideSliderControls(hide) {
+        this.translateValue.setValue((hide ? 0 : 1));
         Animated.spring(
             this.translateValue,
             {
-                toValue: up ? 1 : 0,
+                toValue: (hide ? 1 : 0),
                 duration: 2000,
                 easing: Easing.linear
             }
@@ -31,12 +36,15 @@ export default class GettingStarted extends React.Component {
     }
 
     changePage(e) {
-        if(e.nativeEvent.position === 3) {
-            this.translateValue.setValue(0);
+        if(e.nativeEvent.position === 4 || e.nativeEvent.position === 0) {
             this.hideSliderControls(true);
         } else {
-            this.translateValue.setValue(1);
-            this.hideSliderControls(false);
+            this.setState({
+                activeSlide: e.nativeEvent.position
+            });
+
+            if(this.translateValue._value > .5)
+                this.hideSliderControls(false);
         }
     }
 
@@ -48,17 +56,22 @@ export default class GettingStarted extends React.Component {
         return (
             <View style={Styles.containerWrapper}>
                 <ViewPagerAndroid style={Styles.containerWrapper} onPageSelected={this.changePage}>
-                    <View style={[Styles.container, {backgroundColor: Colors.BLUE }]}>
+                    <View style={[Styles.container, {backgroundColor: Colors.PURPLE }]}>
+                        <Text style={[Styles.containerText, {color: 'rgba(255,255,255,.6)'}]}>
+                            Fillip
+                        </Text>
+                    </View>
+                    <View style={Styles.container}>
                         <Text style={Styles.containerText}>
                             Scan
                         </Text>
                     </View>
-                    <View style={[Styles.container, {backgroundColor: Colors.PINK }]}>
+                    <View style={Styles.container}>
                         <Text style={Styles.containerText}>
                             Pay
                         </Text>
                     </View>
-                    <View style={[Styles.container, {backgroundColor: Colors.PURPLE }]}>
+                    <View style={Styles.container}>
                         <Text style={Styles.containerText}>
                             Go
                         </Text>
@@ -66,16 +79,25 @@ export default class GettingStarted extends React.Component {
                     <View style={[Styles.container]}>
                         <View style={Styles.gettingStartedHead}></View>
                         <View style={Styles.gettingStartedControls}>
-                            <Text>
+                            <Text style={Styles.gettingStartedControl}>
                                 Get Started
                             </Text>
                         </View>
                     </View>
                 </ViewPagerAndroid>
                 <Animated.View style={[Styles.sliderControls, {bottom: sliderPosition}]}>
-                    <View style={Styles.sliderControl}></View>
-                    <View style={[Styles.sliderControl, {backgroundColor: 'white'}]}></View>
-                    <View style={Styles.sliderControl}></View>
+                    <View style={[
+                        Styles.sliderControl,
+                        (this.state.activeSlide === 1 ? {backgroundColor: Colors.PINK} : null)
+                    ]}></View>
+                    <View style={[
+                        Styles.sliderControl,
+                        (this.state.activeSlide === 2 ? {backgroundColor: Colors.PINK} : null)
+                    ]}></View>
+                    <View style={[
+                        Styles.sliderControl,
+                        (this.state.activeSlide === 3 ? {backgroundColor: Colors.PINK} : null)
+                    ]}></View>
                 </Animated.View>
             </View>
         )
