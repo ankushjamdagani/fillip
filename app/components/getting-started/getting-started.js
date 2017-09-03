@@ -14,13 +14,18 @@ export default class GettingStarted extends React.Component {
     constructor(props) {
         super(props);
 
-        this.translateValue = new Animated.Value(0);
+        this.translateValue = new Animated.Value(1);
+        this.overlayValue = new Animated.Value(0);
         this.changePage  = this.changePage.bind(this);
         this.hideSliderControls  = this.hideSliderControls.bind(this);
 
         this.state = {
             activeSlide: 0
         }
+    }
+
+    componentDidMount() {
+        // this.hideSliderControls(true);
     }
 
     hideSliderControls(hide) {
@@ -33,6 +38,13 @@ export default class GettingStarted extends React.Component {
                 easing: Easing.linear
             }
         ).start();
+    }
+
+    overlayAnim() {
+        this.overlayValue.setValue(1);
+        Animated.series([
+
+        ])
     }
 
     changePage(e) {
@@ -53,6 +65,12 @@ export default class GettingStarted extends React.Component {
             inputRange: [0, .1, 1],
             outputRange: [0, 10, -40]
         })
+        const gettingStartedOverlay = this.translateValue.interpolate({
+            inputRange: [0, 1],
+            outputRange: ['10%', '100%']
+        })
+        console.log(sliderPosition);
+        console.log(gettingStartedOverlay);
         return (
             <View style={Styles.containerWrapper}>
                 <ViewPagerAndroid style={Styles.containerWrapper} onPageSelected={this.changePage}>
@@ -77,6 +95,12 @@ export default class GettingStarted extends React.Component {
                         </Text>
                     </View>
                     <View style={[Styles.container]}>
+                        <Animated.View style={[
+                            Styles.gettingStartedOverlay,
+                            {
+                                width: 10
+                            }
+                        ]}></Animated.View>
                         <View style={Styles.gettingStartedHead}></View>
                         <View style={Styles.gettingStartedControls}>
                             <Text style={Styles.gettingStartedControl}>
