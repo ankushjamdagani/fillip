@@ -18,6 +18,7 @@ export default class GettingStarted extends React.Component {
         this.overlayValue = new Animated.Value(0);
         this.changePage  = this.changePage.bind(this);
         this.hideSliderControls  = this.hideSliderControls.bind(this);
+        this.overlayAnim  = this.overlayAnim.bind(this);
 
         this.state = {
             activeSlide: 0
@@ -41,15 +42,23 @@ export default class GettingStarted extends React.Component {
     }
 
     overlayAnim() {
-        this.overlayValue.setValue(1);
-        Animated.series([
-
-        ])
+        this.overlayValue.setValue(0);
+        Animated.timing(
+            this.overlayValue,
+            {
+                toValue: 1,
+                duration: 2000,
+                easing: Easing.linear
+            }
+        ).start(this.overlayAnim)
     }
 
     changePage(e) {
         if(e.nativeEvent.position === 4 || e.nativeEvent.position === 0) {
             this.hideSliderControls(true);
+
+            if(e.nativeEvent.position === 4)
+                this.overlayAnim();
         } else {
             this.setState({
                 activeSlide: e.nativeEvent.position
@@ -64,18 +73,22 @@ export default class GettingStarted extends React.Component {
         const sliderPosition = this.translateValue.interpolate({
             inputRange: [0, .1, 1],
             outputRange: [0, 10, -40]
+        });
+
+        const horizPadding = this.overlayValue.interpolate({
+            inputRange: [0, .5, 1],
+            outputRange: [10, 11, 10]
         })
-        const gettingStartedOverlay = this.translateValue.interpolate({
-            inputRange: [0, 1],
-            outputRange: ['10%', '100%']
+
+        const vertPadding = this.overlayValue.interpolate({
+            inputRange: [0, .5, 1],
+            outputRange: [98, 100, 98]
         })
-        console.log(sliderPosition);
-        console.log(gettingStartedOverlay);
         return (
             <View style={Styles.containerWrapper}>
                 <ViewPagerAndroid style={Styles.containerWrapper} onPageSelected={this.changePage}>
                     <View style={[Styles.container, {backgroundColor: Colors.PURPLE }]}>
-                        <Text style={[Styles.containerText, {color: 'rgba(255,255,255,.6)'}]}>
+                        <Text style={[Styles.containerText, {color: 'rgba(255,255,255,.8)'}]}>
                             Fillip
                         </Text>
                     </View>
@@ -98,14 +111,17 @@ export default class GettingStarted extends React.Component {
                         <Animated.View style={[
                             Styles.gettingStartedOverlay,
                             {
-                                width: 10
+                                width: 0
                             }
                         ]}></Animated.View>
                         <View style={Styles.gettingStartedHead}></View>
                         <View style={Styles.gettingStartedControls}>
-                            <Text style={Styles.gettingStartedControl}>
+                            <Animated.Text style={[Styles.gettingStartedControl, {
+                                paddingVertical: horizPadding,
+                                paddingHorizontal: vertPadding,
+                            }]}>
                                 Get Started
-                            </Text>
+                            </Animated.Text>
                         </View>
                     </View>
                 </ViewPagerAndroid>
