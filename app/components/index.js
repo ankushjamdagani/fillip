@@ -1,6 +1,6 @@
 import GettingStarted from './getting-started';
 import SpinLoader from './spin-loader';
-import ScanAndOrderLoader from './scan-and-order';
+import ScanAndOrder from './scan-and-order';
 
 export {
     GettingStarted,
