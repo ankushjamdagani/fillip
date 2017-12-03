@@ -45,6 +45,8 @@ const Styles = StyleSheet.create({
         margin: 'auto'
     },
     gettingStartedControls: {
+        alignSelf: 'center',
+        padding: 10,
         flex: 1
     },
     gettingStartedControl: {

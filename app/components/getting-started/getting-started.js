@@ -3,12 +3,19 @@ import {
     ViewPagerAndroid,
     Text,
     View,
+    Image,
     Animated,
     Easing
 } from 'react-native';
 
+import FontAwesome, { Icons } from 'react-native-fontawesome';
+
 import { Colors } from '../../config/styles';
 import Styles from './styles';
+
+import {
+    Auth
+} from '../../components';
 
 export default class GettingStarted extends React.Component {
     constructor(props) {
@@ -94,17 +101,17 @@ export default class GettingStarted extends React.Component {
                     </View>
                     <View style={Styles.container}>
                         <Text style={Styles.containerText}>
-                            Scan
+                            ...Scan
                         </Text>
                     </View>
                     <View style={Styles.container}>
                         <Text style={Styles.containerText}>
-                            Pay
+                            ...Pay...
                         </Text>
                     </View>
                     <View style={Styles.container}>
                         <Text style={Styles.containerText}>
-                            Go
+                            Go...
                         </Text>
                     </View>
                     <View style={[Styles.container]}>
@@ -114,7 +121,11 @@ export default class GettingStarted extends React.Component {
                                 width: 0
                             }
                         ]}></Animated.View>
-                        <View style={Styles.gettingStartedHead}></View>
+                        <View style={ [ Styles.gettingStartedHead, { width: '65%', alignSelf: 'center' } ] }>
+                            <FontAwesome>{Icons.chevronDown}</FontAwesome>
+                            {/* ------- Auth Component --------- */}
+                            <Auth />
+                        </View>
                         <View style={Styles.gettingStartedControls}>
                             <Animated.Text style={[Styles.gettingStartedControl, {
                                 paddingVertical: horizPadding,

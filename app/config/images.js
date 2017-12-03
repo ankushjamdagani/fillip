@@ -1,5 +1,5 @@
-const images = {
-    logo: require('')
+const IMAGES = {
+    _CART: require('../assets/images/profile.jpg')
 }
 
-export default images;
+export default IMAGES;
