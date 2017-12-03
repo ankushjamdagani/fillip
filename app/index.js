@@ -16,4 +16,5 @@ const fillip = () => (
     </Provider>
 )
 
+// Render App to Device
 AppRegistry.registerComponent('fillip', () => fillip);
